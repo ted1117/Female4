@@ -1,0 +1,185 @@
+body {
+    background-color: #f9f8f4;
+    margin: 0;
+
+    color: #000;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+form {
+    padding: 20px;
+    max-width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+form>div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 600px;
+}
+
+.article {
+    width: 740px;
+}
+
+.article>input {
+    padding: 11px 16px;
+}
+
+.article-option {
+    width: 264px;
+}
+
+.write-box {
+    border-radius: 2px;
+    border: 1px solid #CAC8C5;
+
+    display: flex;
+    flex-direction: column;
+    width: 264px;
+    padding: 16px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.write-box:first-of-type {
+    align-items: center;
+    flex-direction: row;
+}
+
+#topic {
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+#topic>div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.topic-option>div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.topic-option>div>input {
+    margin: 0px;
+}
+
+.topic-option>div>label {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.box-title {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.write-box>label {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.write-box>label:hover,
+.write-box button:hover {
+    cursor: pointer;
+}
+
+#imgfile {
+    height: 0px;
+}
+
+.save-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.save-buttons button:first-child {
+    display: flex;
+    width: 103px;
+    padding: 4px 17px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    border: 1px solid #1E1E1E;
+
+    color: #1E1E1E;
+    font-size: 13px;
+}
+
+.save-buttons button:nth-child(2) {
+    display: flex;
+    width: 103px;
+    padding: 4px 17px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    border: 0;
+    background: #1E1E1E;
+
+    color: #FFF;
+    font-size: 13px;
+}
+
+footer {
+    height: 200px;
+    background-color: #E7E3DA;
+}
+
+footer>div {
+    margin: auto 208px 35px auto;
+}
+
+footer>div>span:first-of-type {
+    color: #2B2B2B;
+    text-align: right;
+    font-family: Noto Sans KR;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+footer>div>span:nth-of-type(2) {
+    color: #2B2B2B;
+    font-family: Noto Sans KR;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

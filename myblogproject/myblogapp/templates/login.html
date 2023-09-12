@@ -1,9 +1,73 @@
+<!-- {% load static %} -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    /* 부모 요소인 body에 대한 스타일 */
+    body {
+      display: flex;
+      /* flexbox를 사용하여 가운데 정렬 */
+      justify-content: center;
+      /* 수평 가운데 정렬 */
+      align-items: center;
+      /* 수직 가운데 정렬 */
+      height: 100vh;
+      /* 화면 높이의 100%를 차지 */
+      margin: 0;
+      /* body의 기본 마진 제거 */
+    }
+
+    /* 가운데 정렬할 div 요소에 대한 스타일 */
+    form {
+      text-align: center;
+      /* 텍스트 정렬은 가운데 */
+      padding: 20px;
+      /* 내부 여백 설정 (선택 사항) */
+      border: 1px solid #ccc;
+      /* 테두리 추가 (선택 사항) */
+      width: 300px;
+      height: 264px;      
+      border-radius: 2px;
+      border: 1px solid #CAC8C5;
+      background: #FFF;
+      display: grid;
+      /* flexbox를 사용하여 가운데 정렬 */
+      /* justify-content: center; */
+      /* 수평 가운데 정렬 */
+      /* align-items: center; */
+      /* 수직 가운데 정렬 */
+    }
+
+    h2 {
+      color: #1E1E1E;
+      text-align: center;
+      font-family: Pretendard;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: normal;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="Login">
+    <h2>Login</h2>
+    <form action="/login" method="post">
+      <!-- 사용자 이름 입력 -->
+      <input type="text" id="username" name="username" placeholder="username" required><br><br>
+
+      <!-- 비밀번호 입력 -->
+      <input type="password" id="password" name="password" placeholder="password" required><br><br>
+
+      <!-- 로그인 버튼 -->
+      <input type="submit" value="Login">
+    </form>
+  </div>
+</body>
+
 </html>

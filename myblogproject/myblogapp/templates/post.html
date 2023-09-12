@@ -1,9 +1,153 @@
+<!-- {% load static %} -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    body {
+      display: flex;
+      /* flexbox 레이아웃 적용 */
+      flex-direction: column;
+      /* 수직 방향으로 아이템을 배치 */
+      height: 100vh;
+      margin-left: 120px;
+      margin-right: 120px;
+    }
+
+    header {
+      height: 105px;
+      border-bottom: solid 1px black;
+      display: flex;
+      /* 내부 아이템을 가로로 정렬하기 위해 flex 적용 */
+      justify-content: space-between;
+      /* 아이템들을 양쪽에 떨어지게 정렬 */
+      align-items: center;
+
+    }
+
+    footer {
+      background-color: #E7E3DA;
+      height: 200px;
+    }
+
+    section {
+      height: 100%;
+    }
+
+    #post {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      height: 70%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #main_article {
+      margin-left: 20px;
+      width: 58%;
+      height: 100%;
+      border: solid 1px #CAC8C5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #sub_article {
+      margin-right: 20px;
+      width: 37%;
+      height: 100%;
+      border: solid 1px #CAC8C5;
+    }
+
+    #updates,
+    #next_page,
+    #prev_page {
+      margin-left: 20px;
+      margin-right: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .pages {
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img src="../static/img/Group_1.svg">
+    <!-- <img src="{% static 'img/Group_1.svg'}"> -->
+    <div>
+      <a>일상</a>
+      <a>요리</a>
+      <a>여행</a>
+      <a>강화</a>
+      <a>IT</a>
+      <a>Logout</a>
+      <input type="submit" value="Just Write!">
+    </div>
+  </header>
+  <section>
+    <div id="post">
+      <article id="main_article">
+        <div id="main_date">
+          2023 09 06
+        </div>
+        <h2 id="main_title">
+          Lorem ipsum dolor
+        </h2>
+        <div id="main_userid">
+          by userid
+        </div>
+        <div id="main_tags">
+          일상
+        </div>
+        <div id="content">
+          asfw
+        </div>
+      </article>
+      <article id="sub_article">
+        <h2>Other posts<br>
+        you may like</h2>
+        <div id="sub_other_contents">
+          <div id="sub_contents">
+            wsegwegew
+          </div>
+        </div>
+      </article>
+    </div>
+    <div id="list">
+      <div id="updates">
+        <div>
+          <input type="submit" value="수정하기">
+          <input type="submit" value="삭제하기">
+        </div>
+        <input type="submit" value="공유하기">
+      </div>
+      <div id="next_page">
+        <div class="pages">
+          <div>다음글</div>
+          <div>글의 제목</div>
+        </div>
+        <div id="next_page_date">2023.09.06</div>
+      </div>
+      <div id="prev_page">
+        <div class="pages">
+          <div>이전글</div>
+          <div>글의 제목</div>
+        </div>
+        <div id="next_page_date">2023.09.06</div>
+      </div>
+    </div>
+  </section>
+  <footer>
+
+  </footer>
+</body>
+
 </html>

@@ -1,9 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <body></body>
+    <style>
+        header{
+            background-color: antiquewhite;
+        }
+        section {
+            background: #F9F8F4;   
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        footer {
+            background-color: blanchedalmond;
+
+        }
+        .container{ /*중간 사진 6개 나오는 부분*/
+            width: 1024px;
+            margin: auto;    
+            display: flex;
+            gap: 38px; 
+            flex-wrap: wrap; 
+        }
+        .card{  /*사진 배치*/
+            width: calc((100% - (2 * 38px)) / 3); 
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card:hover {
+            transform: scale(1.01); 
+            box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+            background-color: #f5f5f5; 
+            transition: transform 0.8s, box-shadow 0.3s, background-color 0.3s;
+        }
+
+        .main_picture{
+            width: 316px;
+            height: 220px;
+            flex-shrink: 0;
+        }
+        .date{/*날짜*/
+            width: 316px;
+            color: #1E1E1E;
+            font-family: Pretendard;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 25px; /* 192.308% */
+        }
+        .block_title{/*제목*/
+            color: #1E1E1E;
+            font-family: Pretendard;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+        .block_container{
+            width: 316px;
+            color: #1E1E1E;
+            font-family: Pretendard;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 25px; 
+        }
+        .Rectangle7{    /*푸터부분 정리필요*/
+            height: 200px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            flex-shrink: 0;
+            background-color: #E7E3DA;;
+        }
+        .madewithdjango{
+            color: #2B2B2B;
+            text-align: right;
+            font-family: Noto Sans KR;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+    </style>
+</head>
+<body>
+    <div id ="board-client">
+        <header>
+
+            <div class="Rectangle10">
+                <div class="Rectangle3"> 
+                    <div class="Group1"></div>
+                        <ul class="Frame3">
+                        <li>일상</li>
+                        <li>요리</li>
+                        <li>영화</li>
+                        <li>IT</li>
+                    </ul>
+                    <div class="Rectangle9">
+                        <li>로그인</li>
+                    </div>
+                </div>
+                <div class="Rectangle8">사진</div>
+                <div class="main_title">제목</div>
+                <div class="main_content">내용</div>
+                <div class="Group11">READ MORE</div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="card">              
+                <div class="main_picture">
+                    <img src="img\Rectangle 13.svg" alt="Main Picture">
+                </div>
+                <div class="date">날짜</div>
+                <div class="block_title">제목</div>
+                <div class="block_content">내용</div>
+            </div>
+            <div class="card">              
+                <div class="main_picture">
+                    <img src="img\Rectangle 14.svg" alt="Main Picture">
+                </div>
+                <div class="date">날짜</div>
+                <div class="block_title">제목</div>
+                <div class="block_content">내용</div>
+            </div>
+            <div class="card">              
+                <div class="main_picture">
+                    <img src="img\Rectangle 15.svg" alt="Main Picture">
+                </div>
+                <div class="date">날짜</div>
+                <div class="block_title">제목</div>
+                <div class="block_content">내용</div>
+            </div>
+       
+            <div class="card">              
+                <div class="main_picture">
+                    <img src="img\Rectangle 13.svg" alt="Main Picture">
+                </div>
+                <div class="date">날짜</div>
+                <div class="block_title">제목</div>
+                <div class="block_content">내용</div>
+            </div>
+            <div class="card">              
+                <div class="main_picture">
+                    <img src="img\Rectangle 14.svg" alt="Main Picture">
+                </div>
+                <div class="date">날짜</div>
+                <div class="block_title">제목</div>
+                <div class="block_content">내용</div>
+            </div>
+            <div class="card">              
+                <div class="main_picture">
+                    <img src="img\Rectangle 15.svg" alt="Main Picture">
+                </div>
+                <div class="date">날짜</div>
+                <div class="block_title">제목</div>
+                <div class="block_content">내용</div>
+            </div>
+       
+          
+        </div>
+        
+        <footer class="Rectangle7">
+            <div class="madewithdjango">Made with Django</div>
+        </footer>
+    </div>
+</body>
 </html>

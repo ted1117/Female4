@@ -1,9 +1,75 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>board_admin</title>
+  <link rel="homeicon" href="{% static 'img/homeicon.png'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/board-admin.css' %}">
+</head>
+
+<body>
+  <!-- Header 부분 -->
+  <header class="flex-item-header">
+    <!-- header 상단 왼쪽 부분 홈로고-->
+    <div class="myLog">
+      <button class="homeButton" onclick="">
+        <img src="{% static 'img/homeicon.png'%}" class="homeicon">
+      </button>
+    </div>
+
+    <!-- header 상단 오른쪽 부분: 일상, 요리, 여행, 영화, 로그인, 글쓰기 버튼 -->
+    <div class="headerRight">
+      <div class="category">
+        <button class="daily">일상</button>
+        <button class="cooking">요리</button>
+        <button class="travel">여행</button>
+        <button class="movie">영화</button>
+      </div>
+      <button class="login">Login</button>
+      <button class="write">Just Write!</button>
+    </div>
+  </header>
+  <nav class="navContainer">
+    <div class="bestPost">
+      <li>
+        <h1 class="bestPostTitle">Lorem ipsum dolor</h1>
+      </li>
+      <li>
+        <p class="bastPostContent">Lorem ipsum 어쩌구저쩌구쏼라솰랑ㄴ미운미엄님뉭무임누이문임누임누임ㄴ우민움닝ㅁㄴ
+          ㅁ너ㅏ움나ㅣㅓ움니우민윔ㄴ윔나우미나윔나윔나ㅜ아ㅣㅁㄴ위만
+        </p>
+      </li>
+      <li><button class="readMore">READ MORE</button></li>
+    </div>
+    <img src="{% static 'img/homeicon.png'%}" class="bestPostImage">
+  </nav>
+  <section>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+
+
+  </section>
+  <footer>
+
+  </footer>
+</body>
+
 </html>

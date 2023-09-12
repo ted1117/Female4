@@ -1,0 +1,121 @@
+/* header 요소 스타일 */
+header {
+    background-color: #1E1E1E;
+    /* 배경색을 검정으로 설정 */
+    color: #F9F8F4;
+    /* 텍스트 색상을 흰색으로 설정 (선택적) */
+    height: 105px;
+    width: 100%;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.flex-item-header {
+    display: flex;
+    /* 헤더 내의 요소들을 가로로 배치 */
+    justify-content: space-around;
+    /* 요소들을 좌우로  */
+    align-items: center;
+    /* 요소들을 수직 가운데 정렬 */
+}
+
+.myLog {
+    display: flex;
+    /* myLog 내의 요소들을 가로로 배치 */
+    align-items: center;
+    /* 요소들을 수직 가운데 정렬 */
+}
+
+.headerRight {
+    display: flex;
+    /* headerRight 내의 요소들을 가로로 배치 */
+    align-items: center;
+    /* 요소들을 수직 가운데 정렬 */
+}
+
+/* 버튼 요소 스타일 */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    /* 버튼 사이의 간격을 조절 */
+    padding: 10px;
+    color: #F9F8F4;
+    border-radius: 5px;
+}
+
+/* write 버튼 스타일 */
+button.write {
+    background-color: white;
+    /* 배경색을 흰색으로 설정 */
+    color: black;
+    /* 텍스트 색상을 검정으로 설정 */
+}
+
+/* Login과 Just Write! 버튼 스타일 */
+.login,
+.write {
+    margin-left: auto;
+    /* Login과 Just Write! 버튼을 헤더 오른쪽으로 이동 */
+}
+
+/* 리스트 아이템 스타일 */
+li {
+    list-style: none;
+    /* 점을 없애는 스타일 */
+}
+
+/* Navigation 스타일 */
+nav {
+    background-color: #1E1E1E;
+    /* 네비게이션 배경색을 파란색으로 설정 */
+    color: white;
+    /* 네비게이션 텍스트 색상을 흰색으로 설정 */
+    padding: 10px;
+    /* 네비게이션 내부 패딩을 추가 (선택적) */
+    height: 415px;
+    width: 100%;
+}
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    /* 네비게이션 내부 요소들을 좌우로 끝에 정렬하여 모음 */
+    align-items: center;
+    /* 요소들을 수직 가운데 정렬 */
+    background-color: #1E1E1E;
+    color: white;
+    padding: 10px;
+    height: 415px;
+    width: 100%;
+}
+
+
+
+/* Section 스타일 */
+section {
+    background-color: #CAC8C5;
+    /* 섹션 배경색을 밝은 회색으로 설정 */
+    padding: 20px;
+    /* 섹션 내부 패딩을 추가 (선택적) */
+    height: calc(100vh -105px - 415px - 200px);
+    width: 100%;
+}
+
+/* Footer 스타일 */
+footer {
+    background-color: #E7E3DA;
+    /* 푸터 배경색을 어두운 회색으로 설정 */
+    color: white;
+    /* 푸터 텍스트 색상을 흰색으로 설정 */
+    padding: 10px;
+    /* 푸터 내부 패딩을 추가 (선택적) */
+    height: 200px;
+    width: 100%;
+}
