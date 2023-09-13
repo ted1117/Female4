@@ -30,7 +30,7 @@
       border: 1px solid #ccc;
       /* 테두리 추가 (선택 사항) */
       width: 300px;
-      height: 264px;      
+      height: 264px;
       border-radius: 2px;
       border: 1px solid #CAC8C5;
       background: #FFF;
@@ -65,9 +65,21 @@
       <input type="password" id="password" name="password" placeholder="password" required><br><br>
 
       <!-- 로그인 버튼 -->
-      <input type="submit" value="Login">
+      <a href="#" id="login-link">로그인</a>
     </form>
   </div>
 </body>
+<script>
+  document.getElementById("login-link").addEventListener("click", function (event) {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // 아이디 또는 비밀번호가 비어 있는 경우 알림창 표시
+    if (!username || !password) {
+      event.preventDefault(); // 링크 이벤트 중지
+      alert("아이디와 비밀번호를 모두 입력하세요.");
+    }
+  });
+</script>
 
 </html>
