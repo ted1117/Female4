@@ -3,20 +3,39 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .models import Article
 from .serializers import ArticleSerializer
-from .forms import CustomLoginForm, BlogPostForm
-
+from .forms import CustomLoginForm, ArticleForm
+from django.http import HttpResponse
+from rest_framework import generics
 
 
 # Create your views here.
+@login_required
 def write(request):
     if request.method == "POST":
         title = request.POST["title"]
         content = request.POST["content"]
         topic = request.POST["topic"]
-        imgfile = request.FILES["imgfile"]
+        imgfile = request.FILES.get("imgfile")
         Article.objects.create(title=title, content=content, topic=topic, imgfile=imgfile)
         return redirect("post")
     return render(request, "write.html")
+
+# write.html / Summernote 에디터
+@login_required
+def note_post(request):
+    if request.method == "POST":
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            title = request.POST["title"]
+            topic = request.POST["topic"]
+            Article.objects.create(title=title, topic=topic)
+            form.save()
+            return redirect("post")
+    else:
+        form = ArticleForm()
+        context = {"form": form}
+
+    return render(request, "write.html", context)
 
 def post(request):
     return render(request, "post.html")
@@ -54,3 +73,19 @@ def boardadmin(request):
 
 def boardclient(request):
     return render(request, "board-client.html")
+
+# 포스트리스트
+def post_list(request, topic=None):
+    
+    # 특정 주제로 필터링
+    if topic:
+        posts = Article.objects.filter(topic=topic, publish='Y').order_by('-views')
+    
+    else:
+        posts = Article.objects.filter(publish='Y').order_by('-views') 
+    return render(request, 'blog_app/post_list.html', {'posts': posts})
+
+# 포스트 RESTful API뷰 생성
+class BlogPostList(generics.ListCreateAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer

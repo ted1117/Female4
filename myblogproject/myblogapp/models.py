@@ -19,7 +19,7 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)    
     topic = models.CharField(max_length=50)    
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    imgfile = models.ImageField(upload_to='images/')
+    imgfile = models.ImageField(upload_to='images/', blank = True, null = True)
 
     def __str__(self) -> str:
         return self.content

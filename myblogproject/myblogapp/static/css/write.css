@@ -31,6 +31,10 @@ form>div {
     width: 740px;
 }
 
+.article label {
+    display: none;
+}
+
 .article>input {
     padding: 11px 16px;
 }

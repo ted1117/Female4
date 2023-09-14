@@ -16,7 +16,8 @@
           <input type="text" name="title" placeholder="제목"/>
         </div>   {% endcomment %}
         <input type="text" name="title" placeholder="제목"/>
-        <textarea name="content" id="" cols="30" rows="20"></textarea>
+        {% comment %} <textarea name="content" id="" cols="30" rows="20"></textarea> {% endcomment %}
+        {{ form.as_table }}
       </div>
       <div class="article-option">
         <div class="write-box">
@@ -27,19 +28,19 @@
           <span class="box-title">주제</span>
           <div class="topic-option">
             <div>
-              <input type="radio" name="topic" id="topic" /><label>일상</label>
+              <input type="radio" name="topic" class="topic" /><label>일상</label>
             </div>
             <div>
-              <input type="radio" name="topic" id="topic" /><label>요리</label>
+              <input type="radio" name="topic" class="topic" /><label>요리</label>
             </div>
             <div>
-              <input type="radio" name="topic" id="topic" /><label>여행</label>
+              <input type="radio" name="topic" class="topic" /><label>여행</label>
             </div>
             <div>
-              <input type="radio" name="topic" id="topic" /><label>영화</label>
+              <input type="radio" name="topic" class="topic" /><label>영화</label>
             </div>
             <div>
-              <input type="radio" name="topic" id="topic" /><label>IT/전자기기</label>
+              <input type="radio" name="topic" class="topic" /><label>IT/전자기기</label>
             </div>
           </div>
         </div>

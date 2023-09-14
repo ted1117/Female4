@@ -12,12 +12,15 @@
 
 <body>
   <!-- Header 부분 -->
-  <header class="flex-item-header">
+  <nav class="flex-item-header">
     <!-- header 상단 왼쪽 부분 홈로고-->
     <div class="myLog">
-      <button class="homeButton" onclick="">
-        <img src="{% static 'img/homeicon.png'%}" class="homeicon">
-      </button>
+      <a href="{% url 'board-admin' %}">
+        <img src="{% static 'img/homeicon.svg' %}" class="homeicon">
+      </a>
+      {% comment %} <button class="homeButton" onclick="">
+        <img src="{% static 'img/homeicon.svg' %}" class="homeicon">
+      </button> {% endcomment %}
     </div>
 
     <!-- header 상단 오른쪽 부분: 일상, 요리, 여행, 영화, 로그인, 글쓰기 버튼 -->
@@ -28,24 +31,32 @@
         <button class="travel">여행</button>
         <button class="movie">영화</button>
       </div>
-      <button class="login">Login</button>
-      <button class="write">Just Write!</button>
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}">Logout</a>
+      <a href="{% url 'write' %}" class="login-write">Just Write!</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="login-write">Login</a>
+      {% endif %}
     </div>
-  </header>
-  <nav class="navContainer">
+  </nav>
+  <header class="navContainer">
     <div class="bestPost">
-      <li>
+      {% comment %} <li>
         <h1 class="bestPostTitle">Lorem ipsum dolor</h1>
       </li>
       <li>
-        <p class="bastPostContent">Lorem ipsum 어쩌구저쩌구쏼라솰랑ㄴ미운미엄님뉭무임누이문임누임누임ㄴ우민움닝ㅁㄴ
-          ㅁ너ㅏ움나ㅣㅓ움니우민윔ㄴ윔나우미나윔나윔나ㅜ아ㅣㅁㄴ위만
+        <p class="bestPostContent">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.
         </p>
       </li>
-      <li><button class="readMore">READ MORE</button></li>
+      <li><button class="readMore">READ MORE</button></li> {% endcomment %}
+      <h1 class="bestPostTitle">Lorem ipsum dolor</h1>
+      <p class="bestPostContent">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.
+        </p>
+      {% comment %} <button class="readMore">READ MORE</button> {% endcomment %}
+      <a href="" class="readMore">READ MORE</a>
     </div>
     <img src="{% static 'img/homeicon.png'%}" class="bestPostImage">
-  </nav>
+  </header>
   <section>
     <li>1</li>
     <li>2</li>
