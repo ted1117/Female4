@@ -1,3 +1,16 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+
+body {
+    /* Font */
+    font-family: Pretendard;
+    font-style: normal;
+    line-height: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
 /* header 요소 스타일 */
 header {
     background-color: #1E1E1E;
@@ -16,6 +29,7 @@ body {
 }
 
 .flex-item-header {
+    background-color: #1E1E1E;
     display: flex;
     /* 헤더 내의 요소들을 가로로 배치 */
     justify-content: space-around;
@@ -39,7 +53,8 @@ body {
 }
 
 /* 버튼 요소 스타일 */
-button {
+button,
+a {
     background: none;
     border: none;
     cursor: pointer;
@@ -51,16 +66,17 @@ button {
 }
 
 /* write 버튼 스타일 */
-button.write {
-    background-color: white;
-    /* 배경색을 흰색으로 설정 */
-    color: black;
-    /* 텍스트 색상을 검정으로 설정 */
-}
+/* .write { */
+/* background-color: white; */
+/* 배경색을 흰색으로 설정 */
+/* color: black; */
+/* 텍스트 색상을 검정으로 설정 */
+/* } */
 
 /* Login과 Just Write! 버튼 스타일 */
-.login,
-.write {
+.login-write {
+    background-color: white;
+    color: black;
     margin-left: auto;
     /* Login과 Just Write! 버튼을 헤더 오른쪽으로 이동 */
 }
@@ -72,7 +88,7 @@ li {
 }
 
 /* Navigation 스타일 */
-nav {
+header {
     background-color: #1E1E1E;
     /* 네비게이션 배경색을 파란색으로 설정 */
     color: white;
@@ -96,7 +112,31 @@ nav {
     width: 100%;
 }
 
+.bestPostTitle {
+    color: #FFF;
+    font-size: 48px;
+    font-weight: 700;
+}
 
+.bestPostContent {
+    width: 525px;
+    /* 글 내용을 최대 5줄까지만 미리보기 */
+    max-height: 5em;
+    overflow: hidden;
+    /* 글꼴 */
+    color: #FFF;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.readMore {
+    width: 108px;
+    height: 39px;
+    flex-shrink: 0;
+    border-radius: 2px;
+    background: #3A3A3A;
+}
 
 /* Section 스타일 */
 section {

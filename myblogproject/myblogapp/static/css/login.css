@@ -1,0 +1,71 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+
+/* 부모 요소인 body에 대한 스타일 */
+body {
+    display: flex;
+    /* flexbox를 사용하여 가운데 정렬 */
+    justify-content: center;
+    /* 수평 가운데 정렬 */
+    align-items: center;
+    /* 수직 가운데 정렬 */
+    height: 100vh;
+    /* 화면 높이의 100%를 차지 */
+    margin: 0;
+    /* body의 기본 마진 제거 */
+    background-color: #F9F8F4;
+
+    /* Font */
+    font-family: Pretendard;
+    font-style: normal;
+    line-height: normal;
+}
+
+/* 가운데 정렬할 div 요소에 대한 스타일 */
+form {
+    text-align: center;
+    /* 텍스트 정렬은 가운데 */
+    padding: 20px;
+    /* 내부 여백 설정 (선택 사항) */
+    border: 1px solid #ccc;
+    /* 테두리 추가 (선택 사항) */
+    width: 300px;
+    height: 264px;
+    border-radius: 2px;
+    border: 1px solid #CAC8C5;
+    background: #FFF;
+    display: grid;
+}
+
+h2 {
+    color: #1E1E1E;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+#username,
+#password {
+    display: flex;
+    height: 14px;
+    padding: 10px;
+    align-items: flex-start;
+    gap: 10px;
+    border: 0px;
+    border-bottom: 1px solid #CAC8C5;
+}
+
+#loginBtn {
+    display: flex;
+    padding: 11px 82px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 0px;
+    border-radius: 2px;
+    background: #1E1E1E;
+    color: #FFF;
+
+    font-size: 12px;
+    font-weight: 700;
+
+}
