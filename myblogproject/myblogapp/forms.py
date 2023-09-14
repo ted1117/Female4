@@ -1,5 +1,8 @@
 from django import forms
-from .models import BlogPost
+from .models import Article
+
+from django_summernote.widgets import SummernoteWidget
+
 
 class CustomLoginForm(forms.Form):
     username = forms.CharField(
@@ -11,10 +14,18 @@ class CustomLoginForm(forms.Form):
         label='',
     )
 
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ["content"]
+        widgets = {
+            "content": SummernoteWidget(),
+        }
+
 
 class BlogPostForm(forms.ModelForm):
     class Meta:
-        model = BlogPost
+        model = Article
         exclude = ['created_at']
 
     def __init__(self, *args, **kwargs):
