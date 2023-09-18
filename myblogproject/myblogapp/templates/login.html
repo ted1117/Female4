@@ -16,10 +16,10 @@
     <form action="" method="post">
       {% csrf_token %}
       <!-- 사용자 이름 입력 -->
-      <input type="text" id="username" name="username" placeholder="username" value="{{ form.username.value|default_if_none:'' }}" required><br><br>
+      <input type="text" id="username" name="username" placeholder="username" value="{{ form.username.value|default_if_none:'' }}" required>
 
       <!-- 비밀번호 입력 -->
-      <input type="password" id="password" name="password" placeholder="password" value="{{ form.password.value|default_if_none:'' }}" required><br><br>
+      <input type="password" id="password" name="password" placeholder="password" value="{{ form.password.value|default_if_none:'' }}" required>
 
       <!-- 로그인 버튼 -->
       <input type="submit" id="loginBtn" value="Login">

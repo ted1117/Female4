@@ -1,0 +1,33 @@
+footer {
+    height: 200px;
+    background-color: #E7E3DA;
+    display: flex;
+    justify-content: center;
+}
+
+footer>div {
+    width: 71%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-bottom: 35px;
+}
+
+footer>div>span:first-of-type {
+    color: #2B2B2B;
+    text-align: right;
+    font-family: Noto Sans KR;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+footer>div>span:nth-of-type(2) {
+    color: #2B2B2B;
+    font-family: Noto Sans KR;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
