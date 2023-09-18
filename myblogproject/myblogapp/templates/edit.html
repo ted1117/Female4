@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/write.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_light.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}" />
+    <title>Write</title>
+  </head>
+  <body>
+    {% include "nav_bar.html" %}
+    <h2>게시물 수정</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="article">        
+        {{ form.title }}
+        {{ form.content }}   
+      </div>
+      <div class="article-option">
+        <div class="write-box">
+          <img src="{% static 'img/material-symbols_robot-2-outline.svg' %}" alt="">
+          <a href="" class="box-title">인공지능 글 자동완성</a>
+        </div>
+        <div class="write-box" id="topic">
+          <span class="box-title">주제</span>
+          {{ form.topic }}
+        </div>
+        <div class="write-box">
+          <span class="box-title">업로드 정보</span>
+          <p>상태:</p>
+          <div class="save-buttons">
+            <button type="submit">수정 완료</button>
+          </div>
+          
+        </div>
+      </div>
+    </form>
+    {% include "footer.html" %}
+  </body>
+  <script src="{% static '/js/form.js' %}" defer></script>
+</html>
