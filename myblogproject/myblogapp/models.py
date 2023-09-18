@@ -27,6 +27,19 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     imgfile = models.ImageField(upload_to='images/', blank = True, null = True)
     views = models.IntegerField(default=0)
+    # publish = models.CharField(max_length=1, default='Y')
 
     def __str__(self) -> str:
         return self.content
+    
+    # content 길이가 210자 이상이면 210자 까지만 나오게
+    def is_content_more210(self):
+        return len(self.content) > 210
+    
+    def get_content_under300(self):
+        return self.content[:210]
+    
+    def save(self, *args, **kwargs):
+        # '..' 문자열이 포함된 content 필드를 변경
+        self.content = self.content.replace('"..', '"')
+        super().save(*args, **kwargs)

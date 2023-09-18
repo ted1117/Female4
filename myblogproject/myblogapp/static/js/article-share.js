@@ -13,14 +13,14 @@ function shareTwitter() {
     // 트위터 공유 URL 설정
     const shareUrl = `https://twitter.com/intent/tweet?url=${postUrl}&text=공유할 텍스트`;
     window.open(shareUrl, "_blank");
-    closeModal(); // 팝업 닫기
+    closeModal();
 }
 
 function shareFacebook() {
     // 페이스북 공유 URL 설정
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${postUrl}`;
     window.open(shareUrl, "_blank");
-    closeModal(); // 팝업 닫기
+    closeModal();
 }
 
 function copyToClipboard() {
@@ -44,8 +44,9 @@ function shareKakao() {
         requestUrl: postUrl,
         templateId: 98566,
         templateArgs: {
-            TITLE: "제목",
-            DESC: "설명",
+            TITLE: title,
+            DESC: content,
         },
     });
+    closeModal();
 }
