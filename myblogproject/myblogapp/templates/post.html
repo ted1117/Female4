@@ -15,29 +15,34 @@
   {% include "nav_bar.html" %}
   <main>
     <div id="post">
+      {% comment "" %}게시글 나오는 부분{% endcomment %}
       <div id="main-article-box">
+        {% if post %}
         <article id="main-article">
           <div id="main-date">
-            2023 09 06
+            {{ post.created_at }}
           </div>
           <h2 id="main-title">
-            Lorem ipsum dolor
+            {{ post.title }}
           </h2>
           <div id="main-userid">
-            by userid
+            {{ post.author_id }}
           </div>
           <div id="main-tags">
             <span>일상</span>
           </div>
           <div id="content">
-            asfw
+            {{ post.content|safe }}
           </div>
         </article>
+        {% else %}
+        <p>해당 포스트를 찾을 수 없습니다.</p>
+        {% endif %}
       </div>
-      
+      {% comment "" %}추천포스트 영역{% endcomment %}
       <aside id="sub-article">
         <h2>Other posts<br>
-        you may like</h2>
+          you may like</h2>
         <div id="sub-other-contents">
           <div class="sub-contents">
             <img src="" alt="">
@@ -51,19 +56,34 @@
       </aside>
     </div>
     {% if user.is_authenticated %}
+    {% comment "" %}로그인 여부에따라 다른 모달들이 나옴{% endcomment %}
+
     <div id="updates">
       <div>
-        <input type="submit" id="edit" value="수정하기">
-        <input type="submit" id="delete" value="삭제하기">
+        <form action="{% url 'post_edit' id=post.id %}" method="get" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% comment %} 수정버튼 {% endcomment %}
+          <!-- <input type="hidden" name="id" value="{{ post.id }}"> -->
+          <input type="submit" id="edit" value="수정하기">
+        </form>
+        
+        <form action="{% url 'post_remove' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% comment %} 삭제버튼 {% endcomment %}
+          <input type="hidden" name="id" value="{{ post.id }}">
+          <input type="submit" id="delete" value="삭제하기">
+        </form>        
       </div>
-      <input type="submit" id="share" value="공유하기">
-    </div>
+      <button onclick="openModal()" id="share">공유하기</button>
+        <!-- 모달 팝업 -->
+        {% include "article-share.html" %}    </div>
     {% else %}
     <div id="updates" style="justify-content: end;">
-      <input type="submit" id="share" value="공유하기">
-    </div>
+      <button onclick="openModal()" id="share">공유하기</button>
+        <!-- 모달 팝업 -->
+        {% include "article-share.html" %}    </div>
     {% endif %}
-    
+
   </main>
   <div class="list-container">
     <div id="list">
@@ -87,5 +107,10 @@
   </div>
   {% include "footer.html" %}
 </body>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <script src="{% static 'js/article-share.js' %}"></script>
+  <script>
+    const title = "{{ post.title }}";
+    const content = "{{ post.content | safe }}";
+  </script>
 </html>

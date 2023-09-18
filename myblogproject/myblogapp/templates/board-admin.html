@@ -16,66 +16,50 @@
   <header class="navContainer">
     <div class="header-container">
       <div class="bestPost">
-      {% comment %} <li>
+        {% comment %} <li>
+          <h1 class="bestPostTitle">Lorem ipsum dolor</h1>
+        </li>
+        <li>
+          <p class="bestPostContent">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam
+            pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus
+            feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus
+            vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.
+          </p>
+        </li>
+        <li><button class="readMore">READ MORE</button></li> {% endcomment %}
         <h1 class="bestPostTitle">Lorem ipsum dolor</h1>
-      </li>
-      <li>
-        <p class="bestPostContent">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.
-        </p>
-      </li>
-      <li><button class="readMore">READ MORE</button></li> {% endcomment %}
-        <h1 class="bestPostTitle">Lorem ipsum dolor</h1>
-        <p class="bestPostContent">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.
+        <p class="bestPostContent">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam
+          pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus
+          feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae
+          pretium. Gravida faucibus scelerisque quis mi consequat malesuada.
         </p>
         {% comment %} <button class="readMore">READ MORE</button> {% endcomment %}
         <a href="" class="readMore">READ MORE</a>
       </div>
       <img src="{% static 'img/thumbnail.jpg'%}" class="bestPostImage">
     </div>
-    
+
   </header>
   <div class="post-grid-container">
     <div class="post-grid">
-      <article class="post">
+      {% for record in all_records %}
+      <article class="post" id="{{ record.id }}">
+        {% if record.img %}
+        <img src="{{ record.img }}" alt="" class="post-img">
+        {% else %}
         <img src="{% static 'img/thumbnail.jpg'%}" alt="" class="post-img">
-        <p class="post-date">2023-09-07 12:13:01</p>
-        <h2 class="post-title">Lorem ipsum dolor</h2>
-        <p class="post-content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo </p>
+        {% endif %}
+
+        <p class="post-date">{{ record.created_at }}</p>
+        <h2 class="post-title">{{ record.title }}</h2>
+        <p class="post-content">{{ record.content|safe }}</p>
       </article>
-      <article class="post">
-        <img src="{% static 'img/thumbnail.jpg'%}" alt="" class="post-img">
-        <p class="post-date">2023-09-07 12:13:01</p>
-        <h2 class="post-title">Lorem ipsum dolor</h2>
-        <p class="post-content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo </p>
-      </article>
-      <article class="post">
-        <img src="{% static 'img/thumbnail.jpg'%}" alt="" class="post-img">
-        <p class="post-date">2023-09-07 12:13:01</p>
-        <h2 class="post-title">Lorem ipsum dolor</h2>
-        <p class="post-content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo </p>
-      </article>
-      <article class="post">
-        <img src="{% static 'img/thumbnail.jpg'%}" alt="" class="post-img">
-        <p class="post-date">2023-09-07 12:13:01</p>
-        <h2 class="post-title">Lorem ipsum dolor</h2>
-        <p class="post-content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo </p>
-      </article>
-      <article class="post">
-        <img src="{% static 'img/thumbnail.jpg'%}" alt="" class="post-img">
-        <p class="post-date">2023-09-07 12:13:01</p>
-        <h2 class="post-title">Lorem ipsum dolor</h2>
-        <p class="post-content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo </p>
-      </article>
-      <article class="post">
-        <img src="{% static 'img/thumbnail.jpg'%}" alt="" class="post-img">
-        <p class="post-date">2023-09-07 12:13:01</p>
-        <h2 class="post-title">Lorem ipsum dolor</h2>
-        <p class="post-content">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus feugiat et mi justo </p>
-      </article>
+      {% endfor %}
     </div>
-    
+
   </div>
   {% include "footer.html" %}
 </body>
+<script src="{% static 'js/board.js' %}"></script>
 
 </html>

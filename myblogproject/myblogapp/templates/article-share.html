@@ -1,0 +1,27 @@
+{% load static %}
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <p>게시물 공유하기</p>
+    <a href="#" onclick="shareTwitter()"
+      ><img src="{% static 'img/Twitter.svg' %}" class="icon" alt=""
+    /></a>
+    <a href="#" onclick="shareFacebook()"
+      ><img src="{% static 'img/Facebook.svg' %}" class="icon" alt=""
+    /></a>
+    <a href="#" onclick="shareKakao()" id="shareKt"
+      ><img src="{% static 'img/Kakaotalk.png' %}" class="icon" alt=""
+    /></a>
+    {% comment %}
+    <a
+      href="https://www.flaticon.com/free-icons/kakao-talk"
+      title="kakao talk icons"
+      >Kakao talk icons created by Fathema Khanom - Flaticon</a
+    >
+    {% endcomment %}
+    <div id="copy-container">
+      <input type="text" id="share-link" value="" readonly />
+      <button class="copy-button" onclick="copyToClipboard()">복사</button>
+    </div>
+  </div>
+</div>
