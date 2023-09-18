@@ -1,0 +1,72 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+
+.flex-item-header {
+    background-color: #f9f8f4;
+    display: flex;
+    /* 헤더 내의 요소들을 가로로 배치 */
+    justify-content: center;
+    /* 요소들을 좌우로  */
+    align-items: center;
+    /* 요소들을 수직 가운데 정렬 */
+}
+
+.nav-container {
+    width: 71%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.myLog {
+    display: flex;
+    /* myLog 내의 요소들을 가로로 배치 */
+    align-items: center;
+    /* 요소들을 수직 가운데 정렬 */
+}
+
+.myLog>a {
+    padding-left: 0;
+}
+
+.homeicon {
+    filter: invert(100%);
+}
+
+.headerRight {
+    display: flex;
+    /* headerRight 내의 요소들을 가로로 배치 */
+    align-items: center;
+    /* 요소들을 수직 가운데 정렬 */
+}
+
+/* 버튼 요소 스타일 */
+nav button,
+nav a {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    /* 버튼 사이의 간격을 조절 */
+    padding: 10px;
+    color: #1E1E1E;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* Login과 Just Write! 버튼 스타일 */
+.login-write {
+    border: none;
+    background-color: black;
+    color: white;
+    margin-left: auto;
+    margin-right: 0px;
+    /* Login과 Just Write! 버튼을 헤더 오른쪽으로 이동 */
+    text-align: center;
+    font-family: Noto Sans KR;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

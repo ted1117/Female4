@@ -6,18 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" /> {% endcomment %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/write.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar_light.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}" />
     <title>Write</title>
   </head>
   <body>
+    {% include "nav_bar.html" %}
     <form action="" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="article">
-        {% comment %} <div>
-          <input type="text" name="title" placeholder="제목"/>
-        </div>   {% endcomment %}
-        <input type="text" name="title" placeholder="제목"/>
-        {% comment %} <textarea name="content" id="" cols="30" rows="20"></textarea> {% endcomment %}
-        {{ form.as_table }}
+        {{ form.title }}
+        {{ form.content }}   
       </div>
       <div class="article-option">
         <div class="write-box">
@@ -26,31 +25,11 @@
         </div>
         <div class="write-box" id="topic">
           <span class="box-title">주제</span>
-          <div class="topic-option">
-            <div>
-              <input type="radio" name="topic" class="topic" /><label>일상</label>
-            </div>
-            <div>
-              <input type="radio" name="topic" class="topic" /><label>요리</label>
-            </div>
-            <div>
-              <input type="radio" name="topic" class="topic" /><label>여행</label>
-            </div>
-            <div>
-              <input type="radio" name="topic" class="topic" /><label>영화</label>
-            </div>
-            <div>
-              <input type="radio" name="topic" class="topic" /><label>IT/전자기기</label>
-            </div>
-          </div>
+          {{ form.topic }}
         </div>
         <div class="write-box">
           <span class="box-title">업로드 정보</span>
           <p>상태:</p>
-          <form action="" method="post" enctype="multipart/form-data">
-            <label for="imgfile">이미지 업로드</label>
-            <input type="file" name="imgfile" id="imgfile" />
-          </form>
           <div class="save-buttons">
             <button id="tmp-save">임시 저장</button>
             <button type="submit">저장</button>
@@ -59,12 +38,7 @@
         </div>
       </div>
     </form>
-    <footer>
-      <div>
-        <span>Made with</span>
-        <span>Django</span>
-      </div>
-    </footer>
+    {% include "footer.html" %}
   </body>
   <script src="{% static '/js/form.js' %}" defer></script>
 </html>

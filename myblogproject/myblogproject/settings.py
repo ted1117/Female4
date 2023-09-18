@@ -114,6 +114,13 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": "mydatabase",
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -159,3 +166,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
+
+# 브라우저 닫으면 session 없애기
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# update되면 session바로 반영
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_AGE = 3600
+
+
+# Summernote 설정
+SUMMERNOTE_CONFIG = {
+    'summernote': {
+        'width': '100%',
+        'height': '480',
+    }
+}
