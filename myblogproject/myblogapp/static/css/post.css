@@ -180,3 +180,50 @@ aside#sub-article>h2 {
     font-weight: 400;
     opacity: 0.5;
 }
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: center;
+}
+
+/* 닫기 버튼 스타일 */
+.close {
+    float: right;
+    cursor: pointer;
+}
+
+/* 아이콘 스타일 */
+.icon {
+    width: 48px;
+    font-size: 32px;
+    margin-right: 10px;
+}
+
+/* 복사 버튼 스타일 */
+.copy-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#share-link {
+    height: 17px;
+    padding: 3px 8px;
+}
