@@ -26,9 +26,6 @@ def note_post(request):
     if request.method == "POST":
         form = ArticleForm(request.POST)
         if form.is_valid():
-            title = request.POST["title"]
-            topic = request.POST["topic"]
-            Article.objects.create(title=title, topic=topic)
             form.save()
             return redirect("post")
     else:

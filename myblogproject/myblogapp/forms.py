@@ -17,10 +17,25 @@ class CustomLoginForm(forms.Form):
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ["content"]
+        fields = ["title", "content", "topic"]
         widgets = {
+            "title": forms.TextInput(attrs={"placeholder": "제목"}),
             "content": SummernoteWidget(),
+            "topic": forms.RadioSelect(
+                choices=[
+                    ("daily", "일상"),
+                    ("cooking", "요리"),
+                    ("trip", "여행"),
+                    ("movie", "영화"),
+                    ("IT", "IT / 전자기기"),
+                ],
+                attrs={"class": "topic-option"},
+            ),
         }
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.fields["topic"].required = False
 
 
 class BlogPostForm(forms.ModelForm):
