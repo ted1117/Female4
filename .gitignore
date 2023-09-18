@@ -11,6 +11,8 @@ db.sqlite3
 db.sqlite3-journal
 media
 secret.json
+mydatabase
+launch.json
 
 # Python venv #
 django_env/
