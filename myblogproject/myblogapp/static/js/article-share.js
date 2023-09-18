@@ -1,4 +1,5 @@
 let postUrl = window.location.href;
+Kakao.init("8f7bd7a4d2f7d78d444873753b489269");
 
 function openModal() {
     document.getElementById("myModal").style.display = "block";
@@ -38,8 +39,6 @@ function copyToClipboard() {
 }
 
 function shareKakao() {
-    Kakao.init("8f7bd7a4d2f7d78d444873753b489269");
-
     Kakao.Link.sendScrap({
         requestUrl: postUrl,
         templateId: 98566,
