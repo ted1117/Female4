@@ -13,6 +13,7 @@ media
 secret.json
 mydatabase
 launch.json
+migrations/
 
 # Python venv #
 django_env/
