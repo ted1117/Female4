@@ -9,6 +9,8 @@ from rest_framework import generics
 import re
 from django.contrib import messages
 from django.urls import reverse
+from bs4 import BeautifulSoup
+from django.db.models import Q
 
 
 
@@ -27,15 +29,25 @@ def write(request):
 # write.html / Summernote 에디터
 @login_required
 def note_post(request):
+    drafts = Article.objects.filter(is_saved=False).order_by("-created_at")
+        
     if request.method == "POST":
         form = ArticleForm(request.POST)
+        button_type = request.POST.get("button_type")
         if form.is_valid():
-            form.save()
-            return redirect("post")
+            post = form.save(commit=False)
+            post.author = request.user
+            if button_type == "tmp_save":
+                post.save()
+                return redirect("board-admin")
+
+            post.is_saved = True
+            post.save()
+            return redirect("post", id=post.id)
     else:
         form = ArticleForm()
         print(form)
-        context = {"form": form}
+        context = {"form": form, "drafts": drafts}
 
     return render(request, "write.html", context)
 
@@ -51,22 +63,54 @@ def post(request):
         post = None
     return render(request, "post.html", {'post': post})
 
+def getPost(request, id):
+    current_post = get_object_or_404(Article, id=id)
 
+    # 현재 게시물 조회수 상승
+    current_post.views += 1
+    current_post.save()
+
+    # 현재 게시물의 이전 게시물 가져오기
+    prev_post = Article.objects.filter(id__lt=current_post.id).order_by('-id').first()
+
+    # 현재 게시물의 다음 게시물 가져오기
+    next_post = Article.objects.filter(id__gt=current_post.id).order_by('id').first()
+    
+    # 추천 게시물
+    rec_posts = Article.objects.exclude(id=current_post.id).filter(topic=current_post.topic)[:2]
+    print(rec_posts)
+    if not rec_posts:
+        excluded_ids = [current_post.id, prev_post.id, next_post.id]
+        rec_posts = Article.objects.exclude(Q(id__in=excluded_ids))[:2]
+
+    for rec_post in rec_posts:
+        soup = BeautifulSoup(rec_post.content, "html.parser")
+        rec_post.img = img_tag.get("src") if (img_tag:=soup.find("img")) else False
+
+    context = {
+        "post": current_post,
+        "prev_post": prev_post,
+        "next_post": next_post,
+        "rec_posts": rec_posts,
+    }
+
+    return render(request, "post.html", context)
+
+@login_required
 def post_edit(request, id):
     post = get_object_or_404(Article, id=id)  # 게시물을 가져옵니다.
 
     if request.method == 'POST':        
         form = ArticleForm(request.POST, instance=post)  # 폼을 POST 데이터로 초기화합니다.
         if form.is_valid():
-            form.save()  # 수정된 데이터를 저장합니다.
-            post_url = reverse('post') + f'?id={post.id}'
-            return redirect(post_url)  # 수정이 완료된 후 게시물 상세 페이지로 리다이렉트
+            form.save() # 수정된 데이터를 저장합니다.
+            return redirect("post", id=post.id)  # 수정이 완료된 후 게시물 상세 페이지로 리다이렉트
     else:
         form = ArticleForm(instance=post)  # 폼을 기존 게시물 데이터로 초기화합니다.
 
     return render(request, 'edit.html', {'form': form, 'post': post})
 
-
+@login_required
 def post_remove(request):
     # GET 요청을 통한 삭제 방지
     if request.method == 'POST':
@@ -106,7 +150,12 @@ def custom_login(request):
         return render(request, 'registration/login.html', {'form': form})
 
 def boardadmin(request):
-    all_records = Article.objects.all()    
+    most_viewed = Article.objects.filter(is_saved=True).order_by("-views").first()
+    html = most_viewed.content
+    soup = BeautifulSoup(html, "html.parser")
+    most_viewed.img = soup.find("img").get("src")
+
+    all_records = Article.objects.filter(is_saved=True).exclude(id=most_viewed.id).order_by("-created_at")  
     for record in all_records:
         pattern = r'<img[^>]*>'
         # img_tag = re.findall(pattern,record.content)
@@ -117,12 +166,29 @@ def boardadmin(request):
         record.img = ' '.join(img_tag)
         result = re.sub(pattern, '', record.content)
         record.content = result
+    context = {
+        "most_viewed": most_viewed,
+        "all_records": all_records,
+    }
     
 
-    return render(request, "board-admin.html",{'all_records':all_records})
+    return render(request, "board-admin.html", context)
 
-def boardclient(request):
-    return render(request, "board-client.html")
+def topic_view(request, topic):
+    articles = Article.objects.filter(topic=topic, is_saved=True)
+    most_viewed = articles.order_by("-views").first()
+    soup = BeautifulSoup(most_viewed.content, "html.parser")
+    most_viewed.img = img_tag.get("src") if (img_tag:=soup.find("img")) else False
+    all_records = articles.exclude(id=most_viewed.id).order_by("-created_at")
+    for article in all_records:
+        soup = BeautifulSoup(article.content, "html.parser")
+        article.img = img_tag.get("src") if (img_tag:=soup.find("img")) else False
+
+    context = {
+        "most_viewed": most_viewed,
+        "all_records": all_records,
+    }
+    return render(request, "board-admin.html", context)
 
 # 포스트리스트
 def post_list(request, topic=None):
