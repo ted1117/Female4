@@ -4,13 +4,14 @@ from django.contrib.auth.decorators import login_required
 from .models import Article
 from .serializers import ArticleSerializer
 from .forms import CustomLoginForm, ArticleForm
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework import generics
 import re
 from django.contrib import messages
 from django.urls import reverse
 from bs4 import BeautifulSoup
 from django.db.models import Q
+import openai
 
 
 
@@ -189,6 +190,26 @@ def topic_view(request, topic):
         "all_records": all_records,
     }
     return render(request, "board-admin.html", context)
+
+def autocomplete(request):
+    if request.method == "POST":
+
+        #제목 필드값 가져옴
+        prompt = request.POST.get('title')
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": prompt},
+                ],
+            )
+            # 반환된 응답에서 텍스트 추출해 변수에 저장
+            message = response['choices'][0]['message']['content']
+        except Exception as e:
+            message = str(e)
+        return JsonResponse({"message": message})
+    return render(request, 'write.html')
 
 # 포스트리스트
 def post_list(request, topic=None):
