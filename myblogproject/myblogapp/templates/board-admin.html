@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,50 +17,43 @@
   <header class="navContainer">
     <div class="header-container">
       <div class="bestPost">
-        {% comment %} <li>
-          <h1 class="bestPostTitle">Lorem ipsum dolor</h1>
-        </li>
-        <li>
-          <p class="bestPostContent">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam
-            pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus
-            feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus
-            vitae pretium. Gravida faucibus scelerisque quis mi consequat malesuada.
-          </p>
-        </li>
-        <li><button class="readMore">READ MORE</button></li> {% endcomment %}
-        <h1 class="bestPostTitle">{{ popular_post.title }}</h1>
-        <p class="bestPostContent">{{ popular_post.content|striptags }}
+        <h1 class="bestPostTitle">{{ most_viewed.title }}</h1>
+        <p class="bestPostContent">{{ most_viewed.content|striptags }}
         </p>
-        {% comment %} <button class="readMore">READ MORE</button> {% endcomment %}
-        <a href="{% url 'post' popular_post.id %}" class="readMore">READ MORE</a>
+        <a href="{% url 'post' most_viewed.id %}" class="readMore">READ MORE</a>
       </div>
-      {% if popular_img %}
-      <img src="{{ popular_img }}" alt="" class="bestPostImage">
+      {% if most_viewed.img %}
+      <img src="{{ most_viewed.img }}" alt="" class="bestPostImage">
       {% else %}
       <img src="{% static 'img/thumbnail.jpg'%}" class="bestPostImage">
       {% endif %}
     </div>
-
   </header>
+
   <div class="post-grid-container">
     <div class="post-grid">
       {% for record in all_records %}
-      <a href="{% url 'post' record.id %}">
-        <article class="post" id="{{ record.id }}">
-          {% if record.img %}
-          <img src="{{ record.img }}" alt="" class="post-img">
-          {% else %}
-          <img src="{% static 'img/thumbnail.jpg'%}" alt="" class="post-img">
-          {% endif %}
+      {% if not forloop.first %}
+      <article class="post" id="{{ record.id }}">
+        {% if record.img %}
+        <img src="{{ record.img }}" alt="" class="post-img" >
+        {% else %}
+        <img src="{% static 'img/thumbnail.jpg'%}" class="post-img">
+        {% endif %}
 
-          <p class="post-date">{{ record.created_at|date:"Y-m-d H:i" }}</p>
-          <h2 class="post-title">{{ record.title }}</h2>
-          <p class="post-content">{{ record.content|safe }}</p>
-        </article>
-      </a>
+        <p class="post-date">{{ record.created_at|date:"Y-m-d H:i:s" }}</p>
+        <h2 class="post-title">{{ record.title }}</h2>
+        <p class="post-content">
+          {% if record.is_content_more210 %}
+          {{ record.get_content_under210|truncate_lines:4|safe }}
+          {% else %}
+          {{ record.content|truncate_lines:4|safe }}
+          {% endif %} 
+        </p>
+      </article>
+      {% endif %}
       {% endfor %}
     </div>
-
   </div>
   {% include "footer.html" %}
 </body>
