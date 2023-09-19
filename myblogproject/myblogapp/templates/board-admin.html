@@ -27,33 +27,36 @@
           </p>
         </li>
         <li><button class="readMore">READ MORE</button></li> {% endcomment %}
-        <h1 class="bestPostTitle">Lorem ipsum dolor</h1>
-        <p class="bestPostContent">Lorem ipsum dolor sit amet consectetur. Non pretium arcu praesent cursus aliquam
-          pellentesque. Euismod consectetur fames vitae nunc gravida morbi felis porttitor integer. Ridiculus id purus
-          feugiat et mi justo scelerisque euismod euismod. Turpis dictumst luctus nisi placerat purus dolor luctus vitae
-          pretium. Gravida faucibus scelerisque quis mi consequat malesuada.
+        <h1 class="bestPostTitle">{{ popular_post.title }}</h1>
+        <p class="bestPostContent">{{ popular_post.content|striptags }}
         </p>
         {% comment %} <button class="readMore">READ MORE</button> {% endcomment %}
-        <a href="" class="readMore">READ MORE</a>
+        <a href="{% url 'post' popular_post.id %}" class="readMore">READ MORE</a>
       </div>
+      {% if popular_img %}
+      <img src="{{ popular_img }}" alt="" class="bestPostImage">
+      {% else %}
       <img src="{% static 'img/thumbnail.jpg'%}" class="bestPostImage">
+      {% endif %}
     </div>
 
   </header>
   <div class="post-grid-container">
     <div class="post-grid">
       {% for record in all_records %}
-      <article class="post" id="{{ record.id }}">
-        {% if record.img %}
-        <img src="{{ record.img }}" alt="" class="post-img">
-        {% else %}
-        <img src="{% static 'img/thumbnail.jpg'%}" alt="" class="post-img">
-        {% endif %}
+      <a href="{% url 'post' record.id %}">
+        <article class="post" id="{{ record.id }}">
+          {% if record.img %}
+          <img src="{{ record.img }}" alt="" class="post-img">
+          {% else %}
+          <img src="{% static 'img/thumbnail.jpg'%}" alt="" class="post-img">
+          {% endif %}
 
-        <p class="post-date">{{ record.created_at }}</p>
-        <h2 class="post-title">{{ record.title }}</h2>
-        <p class="post-content">{{ record.content|safe }}</p>
-      </article>
+          <p class="post-date">{{ record.created_at|date:"Y-m-d H:i" }}</p>
+          <h2 class="post-title">{{ record.title }}</h2>
+          <p class="post-content">{{ record.content|safe }}</p>
+        </article>
+      </a>
       {% endfor %}
     </div>
 
