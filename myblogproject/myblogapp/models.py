@@ -24,10 +24,11 @@ class Article(models.Model):
     content = models.TextField()            
     created_at = models.DateTimeField(auto_now_add=True)    
     topic = models.CharField(max_length=50, default="전체")    
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    # author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    author = models.CharField(max_length=100, null=True, blank=True)
     imgfile = models.ImageField(upload_to='images/', blank = True, null = True)
     views = models.IntegerField(default=0)
-    # publish = models.CharField(max_length=1, default='Y')
+    is_saved = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.content
