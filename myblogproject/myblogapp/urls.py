@@ -14,6 +14,7 @@ urlpatterns = [
     path("login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("", views.boardadmin, name="board-admin"),
+    path('board-admin/<str:topic>/', views.topic_view, name='topic_view'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    # 미디어파일을 제공하기위한 설정
                                                                     # settings.MEDIA_URL은 미디어 파일의 URL을 설정
                                                                     # settings.MEDIA_ROOT는 미디어 파일이 저장되는 경로
