@@ -7,7 +7,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path("write/", views.note_post, name="write"),
-    path("post", views.post, name="post"),
+    # path("post", views.post, name="post"),
+    path("post/<int:id>", views.getPost, name="post"),
     path("post_remove", views.post_remove, name="post_remove"),
     path('post_edit/<int:id>/', views.post_edit, name="post_edit"),
     path("login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"),

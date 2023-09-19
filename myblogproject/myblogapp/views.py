@@ -9,6 +9,7 @@ from rest_framework import generics
 import re
 from django.contrib import messages
 from django.urls import reverse
+from bs4 import BeautifulSoup
 
 
 
@@ -30,8 +31,9 @@ def note_post(request):
     if request.method == "POST":
         form = ArticleForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("post")
+            post = form.save(commit=False)
+            post.save()
+            return redirect("post", id=post.id)
     else:
         form = ArticleForm()
         print(form)
@@ -50,6 +52,18 @@ def post(request):
         # 해당 ID로 데이터를 찾을 수 없을 경우 예외 처리
         post = None
     return render(request, "post.html", {'post': post})
+
+def getPost(request, id):
+    post = get_object_or_404(Article, id=id)
+
+    post.views += 1
+    post.save()
+
+    context = {
+        "post": post
+    }
+
+    return render(request, "post.html", context)
 
 
 def post_edit(request, id):
@@ -106,7 +120,12 @@ def custom_login(request):
         return render(request, 'registration/login.html', {'form': form})
 
 def boardadmin(request):
-    all_records = Article.objects.all()    
+    popular_post = Article.objects.all().order_by("-views").first()
+    html = popular_post.content
+    soup = BeautifulSoup(html, "html.parser")
+    popular_img = soup.find("img").get("src")
+
+    all_records = Article.objects.exclude(id=popular_post.id).order_by("-created_at")  
     for record in all_records:
         pattern = r'<img[^>]*>'
         # img_tag = re.findall(pattern,record.content)
@@ -117,9 +136,14 @@ def boardadmin(request):
         record.img = ' '.join(img_tag)
         result = re.sub(pattern, '', record.content)
         record.content = result
+    context = {
+        "popular_post": popular_post,
+        "popular_img": popular_img,
+        "all_records": all_records,
+    }
     
 
-    return render(request, "board-admin.html",{'all_records':all_records})
+    return render(request, "board-admin.html", context)
 
 def boardclient(request):
     return render(request, "board-client.html")
