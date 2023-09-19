@@ -180,6 +180,7 @@ aside#sub-article>h2 {
     font-weight: 400;
     opacity: 0.5;
 }
+
 /* 모달 스타일 */
 .modal {
     display: none;
@@ -226,4 +227,8 @@ aside#sub-article>h2 {
 #share-link {
     height: 17px;
     padding: 3px 8px;
+}
+
+img {
+    max-width: 100%
 }
