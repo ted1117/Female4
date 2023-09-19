@@ -23,10 +23,10 @@ class ArticleForm(forms.ModelForm):
             "content": SummernoteWidget(),
             "topic": forms.RadioSelect(
                 choices=[
-                    ("daily", "일상"),
-                    ("cooking", "요리"),
-                    ("trip", "여행"),
-                    ("movie", "영화"),
+                    ("일상", "일상"),
+                    ("요리", "요리"),
+                    ("여행", "여행"),
+                    ("영화", "영화"),
                     ("IT", "IT / 전자기기"),
                 ],
                 attrs={"class": "topic-option"},
