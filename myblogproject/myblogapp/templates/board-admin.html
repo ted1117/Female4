@@ -34,24 +34,26 @@
     <div class="post-grid">
       {% for record in all_records %}
       {% if not forloop.first %}
-      <article class="post" id="{{ record.id }}">
-        {% if record.img %}
-        <img src="{{ record.img }}" alt="" class="post-img" >
-        {% else %}
-        <img src="{% static 'img/thumbnail.jpg'%}" class="post-img">
-        {% endif %}
-
-        <p class="post-date">{{ record.created_at|date:"Y-m-d H:i:s" }}</p>
-        <h2 class="post-title">{{ record.title }}</h2>
-        <p class="post-content">
-          {% if record.is_content_more210 %}
-          {{ record.get_content_under210|truncate_lines:4|safe }}
+      <a href="{% url 'post' record.id %}">
+        <article class="post" id="{{ record.id }}">
+          {% if record.img %}
+          <img src="{{ record.img }}" alt="" class="post-img" >
           {% else %}
-          {{ record.content|truncate_lines:4|safe }}
-          {% endif %} 
-        </p>
-      </article>
-      {% endif %}
+          <img src="{% static 'img/thumbnail.jpg'%}" class="post-img">
+          {% endif %}
+
+          <p class="post-date">{{ record.created_at|date:"Y-m-d H:i:s" }}</p>
+          <h2 class="post-title">{{ record.title }}</h2>
+          <p class="post-content">
+            {% if record.is_content_more210 %}
+            {{ record.get_content_under210|truncate_lines:4|safe }}
+            {% else %}
+            {{ record.content|truncate_lines:4|safe }}
+            {% endif %} 
+          </p>
+        </article>
+        {% endif %}
+      </a>
       {% endfor %}
     </div>
   </div>
