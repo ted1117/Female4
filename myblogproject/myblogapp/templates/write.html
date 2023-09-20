@@ -24,7 +24,7 @@
     <div class="article-option">
       <div class="write-box" id="aiAutocompleteButton">
         <img src="{% static 'img/material-symbols_robot-2-outline.svg' %}" alt="" id="ai-img" />
-        <img style="display: none;" src="{% static 'img/material-symbols_robot-2-outline.svg' %}" alt=""
+        <img style="display: none; width: 24px; height: 24px;" src="{% static 'img/loading.gif' %}" alt=""
           id="loading-animation" />
         {% csrf_token %}
         <a href="#" class="box-title">인공지능 글 자동완성</a>
@@ -37,7 +37,7 @@
       <div class="write-box">
         <span class="box-title">업로드 정보</span>
         <p>상태:</p>
-        <a href="javascript:openModal();">불러오기</a>
+        <a href="javascript:openModal();" class="load-draft">불러오기</a>
         <div class="save-buttons">
           <button type="submit" name="button_type" value="tmp_save" id="tmp-save">임시 저장</button>
           <button type="submit" name="button_type" value="save">저장</button>
