@@ -88,7 +88,8 @@ def getPost(request, id):
     rec_posts = Article.objects.exclude(id=current_post.id).filter(topic=current_post.topic)[:2]
     print(rec_posts)
     if not rec_posts:
-        excluded_ids = [current_post.id, prev_post.id, next_post.id]
+        excluded_ids = [x.id for x in [current_post, prev_post, next_post] if x is not None]
+        # excluded_ids = [current_post.id, prev_post.id, next_post.id]
         rec_posts = Article.objects.exclude(Q(id__in=excluded_ids))[:2]
 
     for rec_post in rec_posts:
