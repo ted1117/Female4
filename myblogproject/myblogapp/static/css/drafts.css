@@ -25,7 +25,7 @@
     cursor: pointer;
 }
 
-.myModal form {
+.modal form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,4 +51,18 @@ tbody {
 
 tbody:hover {
     background-color: #f5f5f5;
+}
+
+.modal button {
+    display: flex;
+    /* width: 100%; */
+    padding: 4px 17px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    border: 1px solid #1E1E1E;
+
+    color: #1E1E1E;
 }

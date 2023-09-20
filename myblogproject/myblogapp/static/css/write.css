@@ -134,6 +134,19 @@ form>div {
     height: 0px;
 }
 
+.load-draft {
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #1E1E1E;
+    border-radius: 2px;
+    background-color: #e9e9ed;
+}
+
 .save-buttons {
     width: 100%;
     display: grid;
@@ -152,7 +165,8 @@ form>div {
     border-radius: 2px;
 }
 
-.save-buttons button:first-child {
+.save-buttons button:first-child,
+.load-draft {
     border-radius: 2px;
     border: 1px solid #1E1E1E;
 

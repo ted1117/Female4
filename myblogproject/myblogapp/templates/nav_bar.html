@@ -12,11 +12,11 @@
     <!-- nav 상단 오른쪽 부분: 일상, 요리, 여행, 영화, 로그인, 글쓰기 버튼 -->
     <div class="headerRight">
       <div class="category">
-        <a href="{% url 'topic_view' topic='일상' %}"><button class="daily">일상</button></a>
-        <a href="{% url 'topic_view' topic='요리' %}"><button class="cooking">요리</button></a>
-        <a href="{% url 'topic_view' topic='여행' %}"><button class="travel">여행</button></a>
-        <a href="{% url 'topic_view' topic='영화' %}"><button class="movie">영화</button></a>
-        <a href="{% url 'topic_view' topic='IT' %}"><button class="it">IT</button></a>
+        <a class="topic" href="{% url 'topic_view' topic='일상' %}"><button>일상</button></a>
+        <a class="topic" href="{% url 'topic_view' topic='요리' %}"><button>요리</button></a>
+        <a class="topic" href="{% url 'topic_view' topic='여행' %}"><button>여행</button></a>
+        <a class="topic" href="{% url 'topic_view' topic='영화' %}"><button>영화</button></a>
+        <a class="topic" href="{% url 'topic_view' topic='IT' %}"><button>IT</button></a>
       </div>
       {% if user.is_authenticated %}
       {% if request.path == '/write/' %}

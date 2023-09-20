@@ -38,7 +38,7 @@
 
 /* 버튼 요소 스타일 */
 nav button,
-nav a {
+nav a:not(.topic) {
     background: none;
     border: none;
     cursor: pointer;
@@ -53,14 +53,14 @@ nav a {
 
 /* Login과 Just Write! 버튼 스타일 */
 .login-write {
-    background-color: white;
-    color: black;
+    background-color: white !important;
+    color: black !important;
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 0px !important;
     /* Login과 Just Write! 버튼을 헤더 오른쪽으로 이동 */
     text-align: center;
     font-family: Noto Sans KR;
-    font-size: 13px;
+    font-size: 13px !important;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
