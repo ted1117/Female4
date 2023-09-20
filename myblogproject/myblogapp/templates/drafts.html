@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/drafts.css' %}">
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>제목</th>
+                    <th>날짜</th>
+                </tr>
+            </thead>
+            {% for draft in drafts %}
+            <tbody>
+                <td><input type="radio" name="selected" value="{{ draft.id }}"></td>
+                <td>{{ draft.title }}</td>
+                <td>{{ draft.created_at | date:"Y-m-d" }}</td>
+            </tbody>
+            {% endfor %}
+        </table>
+        <button type="submit" name="selected_draft">불러오기</button>
+    </form>
+  </div>
+</div>

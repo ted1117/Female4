@@ -9,6 +9,8 @@ from rest_framework import generics
 import re
 from django.contrib import messages
 from django.urls import reverse
+from django.utils import timezone
+from django.core.paginator import Paginator
 from bs4 import BeautifulSoup
 from django.db.models import Q
 import openai
@@ -33,6 +35,11 @@ def note_post(request):
     drafts = Article.objects.filter(is_saved=False).order_by("-created_at")
         
     if request.method == "POST":
+        # 임시로 저장된 글 선택
+        draft_id = request.POST.get("selected")
+        if draft_id:
+            return redirect("post_edit", id=draft_id)
+        
         form = ArticleForm(request.POST)
         button_type = request.POST.get("button_type")
         if form.is_valid():
@@ -104,6 +111,8 @@ def post_edit(request, id):
     if request.method == 'POST':        
         form = ArticleForm(request.POST, instance=post)  # 폼을 POST 데이터로 초기화합니다.
         if form.is_valid():
+            post.is_saved = True
+            post.created_at = timezone.now()
             form.save() # 수정된 데이터를 저장합니다.
             return redirect("post", id=post.id)  # 수정이 완료된 후 게시물 상세 페이지로 리다이렉트
     else:
@@ -151,6 +160,7 @@ def custom_login(request):
         return render(request, 'registration/login.html', {'form': form})
 
 def boardadmin(request):
+    page = request.GET.get("page", "1") # 페이지
     most_viewed = Article.objects.filter(is_saved=True).order_by("-views").first()
     html = most_viewed.content
     soup = BeautifulSoup(html, "html.parser")
@@ -167,9 +177,12 @@ def boardadmin(request):
         record.img = ' '.join(img_tag)
         result = re.sub(pattern, '', record.content)
         record.content = result
+    paginator = Paginator(all_records, 8)  # 페이지 당 8개씩 노출
+    page_obj = paginator.get_page(page)
     context = {
         "most_viewed": most_viewed,
-        "all_records": all_records,
+        # "all_records": all_records,
+        "all_records": page_obj,
     }
     
 

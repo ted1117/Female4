@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/board-admin.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/nav_bar.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}" />
+  {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"> {% endcomment %}
 </head>
 
 <body>
@@ -33,7 +34,6 @@
   <div class="post-grid-container">
     <div class="post-grid">
       {% for record in all_records %}
-      {% if not forloop.first %}
       <a href="{% url 'post' record.id %}">
         <article class="post" id="{{ record.id }}">
           {% if record.img %}
@@ -52,10 +52,45 @@
             {% endif %} 
           </p>
         </article>
-        {% endif %}
       </a>
       {% endfor %}
     </div>
+    <ul class="paginator justify-content-center">
+      <!-- 이전페이지 -->
+        {% if all_records.has_previous %}
+        <li class="page-item">
+          <a href="?page={{ all_records.previous_page_number }}" class="page-link">이전</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="#" class="page-link" tabindex="-1" aria-disabled="true">이전</a>
+        </li>
+        {% endif %}
+        <!-- 페이지리스트 -->
+        {% for page_number in all_records.paginator.page_range %}
+        {% if page_number >= all_records.number|add:-5 and page_number <= all_records.number|add:5 %}
+        {% if page_number == all_records.number %}
+        <li class="page-item active" aria-current="page">
+          <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <!-- 다음페이지 -->
+        {% if all_records.has_next %}
+        <li class="page-item">
+          <a href="?page={{ all_records.next_page_number }}" class="page-link">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a href="#" class="page-link" tabindex="-1" aria-disabled="true">다음</a>
+        </li>
+        {% endif %}
+    </ul>
   </div>
   {% include "footer.html" %}
 </body>
